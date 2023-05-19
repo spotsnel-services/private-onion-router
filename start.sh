@@ -11,7 +11,8 @@ fi
 
 until tailscale up \
     --authkey=${TAILSCALE_AUTH_KEY} \
-    --hostname=tor
+    --hostname=tor \
+    --ssh
 do
     sleep 0.1
 done
@@ -19,6 +20,7 @@ done
 echo 'Tailscale serve Tor proxy...'
 
 tailscale serve tcp:9050 tcp://localhost:9050
+tailscale serve tcp:9051 tcp://localhost:9051
 
 echo 'Tailscale started'
 

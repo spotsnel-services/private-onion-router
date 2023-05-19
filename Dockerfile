@@ -8,7 +8,7 @@ RUN apk --no-cache add \
       /tmp/* \
       /var/tmp/*
 
-RUN sed "1s/^/SocksPort 0.0.0.0:9050\n/" /etc/tor/torrc.sample > /etc/tor/torrc \
+RUN sed "1s/^/SocksPort 127.0.0.1:9050\nControlPort 127.0.0.1:9051\n/" /etc/tor/torrc.sample > /etc/tor/torrc \
     &&  sed -i "s|#%include /etc/torrc.d/\*.conf|%include /etc/torrc.d/\*.conf|g" /etc/tor/torrc \
     &&  mkdir -p /etc/torrc.d
 
