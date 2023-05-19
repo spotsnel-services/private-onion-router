@@ -1,6 +1,8 @@
 Private Tor over Tailscale
 ==========================
 
+![Screenshot](image.png)
+
 ## Usage 
 
 Run the container as follows:
