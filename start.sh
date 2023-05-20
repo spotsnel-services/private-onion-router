@@ -2,14 +2,14 @@
 
 echo 'Starting up Tailscale...'
 
-tailscaled --verbose=1 --port 41641 --tun=userspace-networking --socks5-server=localhost:3215 &
+/app/tailscaled --verbose=1 --port 41641 --tun=userspace-networking --socks5-server=localhost:3215 &
 sleep 5
 if [ ! -S /var/run/tailscale/tailscaled.sock ]; then
     echo "tailscaled.sock does not exist. exit!"
     exit 1
 fi
 
-until tailscale up \
+until /app/tailscale up \
     --authkey=${TAILSCALE_AUTH_KEY} \
     --hostname=tor \
     --ssh
@@ -19,8 +19,8 @@ done
 
 echo 'Tailscale serve Tor proxy...'
 
-tailscale serve tcp:9050 tcp://localhost:9050
-tailscale serve tcp:9051 tcp://localhost:9051
+/app/tailscale serve tcp:9050 tcp://localhost:9050
+/app/tailscale serve tcp:9051 tcp://localhost:9051
 
 echo 'Tailscale started'
 
