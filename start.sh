@@ -24,11 +24,10 @@ echo 'Tailscale serve Tor proxy...'
 
 echo 'Tailscale started'
 
-echo 'Starting up Tor...'
-
 if [ "$1" != "" ]; then
   exec "$@"
 else
+  echo 'Starting up Tor...'
   mkdir -p /var/lib/tor/hidden_service
   chmod 700 /var/lib/tor/hidden_service
   chown -R tor:nogroup /var/lib/tor
@@ -38,5 +37,4 @@ else
     sleep 2s
   done
 fi
-
 
